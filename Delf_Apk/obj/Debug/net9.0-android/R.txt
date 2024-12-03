@@ -1,0 +1,3 @@
+int color colorAccent 0x7f010000
+int color colorPrimary 0x7f010001
+int color colorPrimaryDark 0x7f010002

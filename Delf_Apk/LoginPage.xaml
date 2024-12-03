@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Delf_Apk.LoginPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <StackLayout Padding="30">
+        <Label Text="Iniciar Sesión" FontSize="24" HorizontalOptions="Center" 
+               TextColor="#ffd800"/>
+
+        <Entry x:Name="UsernameEntry" 
+               Placeholder="Usuario" 
+               HorizontalOptions="FillAndExpand"
+               Margin="10,25,10,5"/>
+
+        <Entry x:Name="PasswordEntry" 
+               Placeholder="Contraseña" 
+               IsPassword="True" 
+               HorizontalOptions="FillAndExpand"
+               Margin="10,25,10,5"/>
+
+        <Button Text="Iniciar Sesión" 
+                BackgroundColor ="#ffd800"
+                Margin="10,25,10,5"
+                Clicked="OnLoginClicked" 
+                HorizontalOptions="FillAndExpand" />
+        
+    </StackLayout>
+</ContentPage>
+
