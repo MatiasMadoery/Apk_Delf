@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Delf_Apk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+20d47ca427703b25854c7a8fe849e4bf3f191b47")]
 [assembly: System.Reflection.AssemblyProductAttribute("Delf_Apk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Delf_Apk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

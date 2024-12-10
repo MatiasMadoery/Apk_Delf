@@ -2353,3 +2353,4 @@ C:\Users\matim\OneDrive\Escritorio\Sistema_Delf\Delf_Apk\Delf_Apk - v5\Delf_Apk\
 C:\Users\matim\OneDrive\Escritorio\Sistema_Delf\Delf_Apk\Delf_Apk - v5\Delf_Apk\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt
 C:\Users\matim\OneDrive\Escritorio\Sistema_Delf\Delf_Apk\Delf_Apk - v5\Delf_Apk\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\matim\OneDrive\Escritorio\Sistema_Delf\Delf_Apk\Delf_Apk - v5\Delf_Apk\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
+C:\Users\matim\OneDrive\Escritorio\Sistema_Delf\Delf_Apk\Delf_Apk - v5\Delf_Apk\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\Delf_Apk.sourcelink.json

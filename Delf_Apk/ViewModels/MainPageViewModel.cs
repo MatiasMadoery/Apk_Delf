@@ -5,8 +5,7 @@ using System.Text.Json;
 using Delf_Apk.Models;
 
 namespace Delf_Apk.ViewModels
-{
-    public class MainPageViewModel : INotifyPropertyChanged
+{    public class MainPageViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Viajante> _viajantes;
         private Viajante _viajanteSeleccionado;
@@ -105,7 +104,7 @@ namespace Delf_Apk.ViewModels
         public Command EliminarArticuloCommand { get; }
 
         public MainPageViewModel(ApiService apiService)
-        {            
+        {
             _apiService = apiService;
 
             // Inicializar colecciones
@@ -257,7 +256,7 @@ namespace Delf_Apk.ViewModels
                     {
                         Numero = numeroPedido,
                         Fecha = DateTime.Now,
-                        ClienteId = cliente.Id!,                     
+                        ClienteId = cliente.Id!,
                         ArticuloCantidades = ArticulosSeleccionados!.Select(a => new ArticuloCantidad
                         {
                             ArticuloId = a.Articulo!.Id,
@@ -290,7 +289,7 @@ namespace Delf_Apk.ViewModels
 
                 await Application.Current!.MainPage!.DisplayAlert("Error", $"Seleccione un cliente con viajante y al menos un artículo. {clienteInfo}", "OK");
             }
-        }  
+        }
 
 
         private void FiltrarClientes()
@@ -340,3 +339,149 @@ namespace Delf_Apk.ViewModels
     }
 }
 
+
+
+//    public class MainPageViewModel : INotifyPropertyChanged
+//    {
+//        // Colecciones
+//        public ObservableCollection<Viajante> Viajantes { get; set; } = new ObservableCollection<Viajante>();
+//        public ObservableCollection<Cliente> Clientes { get; set; } = new ObservableCollection<Cliente>();
+//        public ObservableCollection<Categoria> Categorias { get; set; } = new ObservableCollection<Categoria>();
+//        public ObservableCollection<Articulo> ArticulosFiltrados { get; set; } = new ObservableCollection<Articulo>();
+//        public ObservableCollection<ArticuloCantidad> ArticulosSeleccionados { get; set; } = new ObservableCollection<ArticuloCantidad>();
+//        public ObservableCollection<Articulo> ArticulosDisponibles { get; set; } = new ObservableCollection<Articulo>();
+//        public ObservableCollection<Cliente> ClientesFiltrados { get; set; } = new ObservableCollection<Cliente>();
+
+//        // Propiedades
+//        public Viajante ViajanteSeleccionado { get; set; }
+//        public Cliente ClienteSeleccionado { get; set; }
+//        public Categoria CategoriaSeleccionada { get; set; }
+//        public Articulo ArticuloSeleccionado { get; set; }
+//        public int Cantidad { get; set; }
+
+//        // Comandos
+//        public Command AgregarArticuloCommand { get; }
+//        public Command CrearPedidoCommand { get; }
+//        public Command EliminarArticuloCommand { get; }
+
+//        private readonly ApiService _apiService;
+
+//        public MainPageViewModel(ApiService apiService)
+//        {
+//            _apiService = apiService;
+
+//            AgregarArticuloCommand = new Command(AgregarArticulo);
+//            CrearPedidoCommand = new Command(async () => await CrearPedidoAsync());
+//            EliminarArticuloCommand = new Command<ArticuloCantidad>(EliminarArticulo);
+
+//            CargarDatos();
+//        }
+
+//        // Cargar datos de manera optimizada (paralela)
+//        private async void CargarDatos()
+//        {
+//            try
+//            {
+//                var viajantesTask = _apiService.GetViajantes();
+//                var clientesTask = _apiService.GetClientes();
+//                var categoriasTask = _apiService.GetCategorias();
+//                var articulosTask = _apiService.GetArticulos();
+
+//                await Task.WhenAll(viajantesTask, clientesTask, categoriasTask, articulosTask);
+
+//                // Viajantes
+//                foreach (var viajante in viajantesTask.Result)
+//                {
+//                    Viajantes.Add(viajante);
+//                }
+
+//                // Clientes
+//                foreach (var cliente in clientesTask.Result)
+//                {
+//                    cliente.Viajante = await _apiService.GetViajante(cliente.ViajanteId);
+//                    Clientes.Add(cliente);
+//                }
+
+//                // Categorías
+//                foreach (var categoria in categoriasTask.Result)
+//                {
+//                    Categorias.Add(categoria);
+//                }
+
+//                // Artículos
+//                foreach (var articulo in articulosTask.Result)
+//                {
+//                    ArticulosDisponibles.Add(articulo);
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                Console.WriteLine($"Error al cargar datos: {ex.Message}");
+//            }
+//        }
+
+//        // Método optimizado para agregar artículos
+//        private void AgregarArticulo()
+//        {
+//            if (ArticuloSeleccionado != null && Cantidad > 0)
+//            {
+//                var articuloExistente = ArticulosSeleccionados.FirstOrDefault(a => a.Articulo.Id == ArticuloSeleccionado.Id);
+//                if (articuloExistente != null)
+//                {
+//                    articuloExistente.Cantidad += Cantidad;
+//                }
+//                else
+//                {
+//                    ArticulosSeleccionados.Add(new ArticuloCantidad { Articulo = ArticuloSeleccionado, Cantidad = Cantidad });
+//                }
+//                Cantidad = 0;
+//                ArticuloSeleccionado = null!;
+//            }
+//        }
+
+//        // Método optimizado para eliminar artículos
+//        private void EliminarArticulo(ArticuloCantidad articulo)
+//        {
+//            ArticulosSeleccionados.Remove(articulo);
+//        }
+
+//        // Método optimizado para crear un pedido
+//        private async Task CrearPedidoAsync()
+//        {
+//            if (ClienteSeleccionado != null && ArticulosSeleccionados.Count > 0)
+//            {
+//                var pedido = new Pedido
+//                {
+//                    ClienteId = ClienteSeleccionado.Id,
+//                    ArticuloCantidades = ArticulosSeleccionados.Select(a => new ArticuloCantidad
+//                    {
+//                        ArticuloId = a.Articulo.Id,
+//                        Cantidad = a.Cantidad
+//                    }).ToList()
+//                };
+
+//                var resultado = await _apiService.CrearPedido(pedido);
+//                if (resultado)
+//                {
+//                    await Application.Current.MainPage.DisplayAlert("Éxito", "Pedido creado correctamente", "OK");
+//                    ArticulosSeleccionados.Clear();
+//                    ClienteSeleccionado = null!;
+//                }
+//                else
+//                {
+//                    await Application.Current.MainPage.DisplayAlert("Error", "No se pudo crear el pedido", "OK");
+//                }
+//            }
+//            else
+//            {
+//                await Application.Current.MainPage.DisplayAlert("Error", "Seleccione un cliente y artículos", "OK");
+//            }
+//        }
+
+//        public event PropertyChangedEventHandler? PropertyChanged;
+//        protected virtual void OnPropertyChanged(string propertyName)
+//        {
+//            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+//        }
+//    }
+//}

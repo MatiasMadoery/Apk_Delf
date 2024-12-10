@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Delf_Apk.Converters"
              xmlns:vm="clr-namespace:Delf_Apk.ViewModels"
-             x:Class="Delf_Apk.MainPage">
+             x:Class="Delf_Apk.MainPage"
+             BackgroundColor="White">    
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,84 +18,98 @@
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="WidthRequest" Value="150" />
                 <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="Margin" Value="10,25,10,5" />               
+                <Setter Property="Margin" Value="10,25,10,5" />
             </Style>
+
+            <!-- Estilo para los pickers -->
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+           
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ScrollView>
-    <StackLayout Padding="20">
-        <Label Text="Seleccione un viajante:"
-               FontSize="20"
-               TextColor="#ffd800"
-               Margin="0,10,0,5" />
-        <Picker Title="Viajantes"
-                ItemsSource="{Binding Viajantes}"
-                ItemDisplayBinding="{Binding NombreCompleto}"
-                SelectedItem="{Binding ViajanteSeleccionado}" />
+        <StackLayout Padding="14">
+     
+            <Label Text="Seleccione un viajante:"
+                   FontSize="20"
+                   TextColor="Black"
+                   Margin="0,10,0,5"
+                   FontAttributes="Bold"/>
+            <Picker Title="Viajantes"
+                    ItemsSource="{Binding Viajantes}"
+                    ItemDisplayBinding="{Binding NombreCompleto}"
+                    SelectedItem="{Binding ViajanteSeleccionado}" TextColor="#000000" TitleColor="#807B7B" BackgroundColor="#FFD800" />
 
-        <Label Text="Seleccione un cliente:"
-               FontSize="20"
-               TextColor="#ffd800"
-               Margin="0,10,0,5" />
-        <Picker Title="Clientes"
-                ItemsSource="{Binding ClientesFiltrados}"
-                ItemDisplayBinding="{Binding NombreCompleto}"
-                SelectedItem="{Binding ClienteSeleccionado}" />
+            <Label Text="Seleccione un cliente:"
+                   FontSize="20"
+                   TextColor="Black"
+                   Margin="0,10,0,5" 
+                   FontAttributes="Bold"/>
+            <Picker Title="Clientes"
+                    ItemsSource="{Binding ClientesFiltrados}"
+                    ItemDisplayBinding="{Binding NombreCompleto}"
+                    SelectedItem="{Binding ClienteSeleccionado}" TitleColor="#807B7B" BackgroundColor="#FFD800" />
 
-        <Label Text="Filtrar por Categoría" 
-                FontSize="20"
-                TextColor="#ffd800"
-                Margin="0,10,0,5" />
-        <Picker ItemsSource="{Binding Categorias}"
-                ItemDisplayBinding="{Binding Nombre}"
-                SelectedItem="{Binding CategoriaSeleccionada}"
-                Title="Seleccione una categoría" />
+            <Label Text="Filtrar por Categoría" 
+                   FontSize="20"
+                   TextColor="Black"
+                   Margin="0,10,0,5" 
+                   FontAttributes="Bold"/>
+            <Picker ItemsSource="{Binding Categorias}"
+                    ItemDisplayBinding="{Binding Nombre}"
+                    SelectedItem="{Binding CategoriaSeleccionada}"
+                    Title="Seleccione una categoría" TitleColor="#807B7B" BackgroundColor="#FFD800" />
 
-        <Label Text="Seleccione un artículo:"
-               FontSize="20"
-               TextColor="#ffd800"
-               Margin="0,10,0,5" />
-        <Picker Title="Artículos"
-                ItemsSource="{Binding ArticulosFiltrados}"
-                ItemDisplayBinding="{Binding Descripcion}"
-                SelectedItem="{Binding ArticuloSeleccionado}" />
+            <Label Text="Seleccione un artículo:"
+                   FontSize="20"
+                   TextColor="Black"
+                   Margin="0,10,0,5" 
+                   FontAttributes="Bold"/>
+            <Picker Title="Artículos"
+                    ItemsSource="{Binding ArticulosFiltrados}"
+                    ItemDisplayBinding="{Binding Descripcion}"
+                    SelectedItem="{Binding ArticuloSeleccionado}" TitleColor="#807B7B" BackgroundColor="#FFD800" />
 
-        <Label Text="Cantidad:"
-               FontSize="20"
-               TextColor="#ffd800"
-               Margin="0,10,0,5" />
-        <Entry Keyboard="Numeric"
-               Text="{Binding Cantidad, Converter={StaticResource StringToIntConverter}}" />
-        
-        <Button Text="Agregar Artículo"
-                Command="{Binding AgregarArticuloCommand}" />
+            <Label Text="Cantidad:"
+                   FontSize="20"
+                   TextColor="Black"
+                   Margin="0,10,0,5" 
+                   FontAttributes="Bold"/>
+            <Entry Keyboard="Numeric"
+                   Text="{Binding Cantidad, Converter={StaticResource StringToIntConverter}}" TextColor="#000000" Visual="" Background="#FFD800" />
 
-        <Label Text="Artículos seleccionados:"
-               FontSize="20"
-               Margin="0,10,0,5" />
-        <CollectionView ItemsSource="{Binding ArticulosSeleccionados}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal" Spacing="10">
-                        <Label Text="{Binding Articulo.Descripcion}" VerticalOptions="Center" />
-                        <Label Text="{Binding Cantidad}" VerticalOptions="Center" TextColor="#ffd800" />
-                        <Label Text= "{Binding Articulo.Precio}" VerticalOptions="Center"/>
-                        <Button Text="Eliminar"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        FontSize="10"   
-                        Margin="0,10,0,10" 
-                        WidthRequest="60"
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=EliminarArticuloCommand}"
-                        CommandParameter="{Binding .}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-       
-        <Button Text="Crear Pedido"
-                Command="{Binding CrearPedidoCommand}" />
-    </StackLayout>
+            <Button Text="Agregar Artículo"
+                    Command="{Binding AgregarArticuloCommand}" />
+
+            <Label Text="Artículos seleccionados:"
+                   FontSize="20"
+                   Margin="0,10,0,5" />
+            <CollectionView ItemsSource="{Binding ArticulosSeleccionados}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="{Binding Articulo.Descripcion}" VerticalOptions="Center" TextColor="Black"/>
+                            <Label Text="{Binding Cantidad}" VerticalOptions="Center" TextColor="#ffd800" FontAttributes="Bold"/>
+                            <Label Text= "{Binding Articulo.Precio}" VerticalOptions="Center" TextColor="Black"/>
+                            <Button Text="Eliminar"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    FontSize="10"   
+                                    Margin="0,10,0,10" 
+                                    WidthRequest="60"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=EliminarArticuloCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Crear Pedido"
+                    Command="{Binding CrearPedidoCommand}" />
+        </StackLayout>
     </ScrollView>
 </ContentPage>
 

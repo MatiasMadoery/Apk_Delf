@@ -2,26 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Delf_Apk.LoginPage"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="White">
 
     <StackLayout Padding="30">
-        <Label Text="Iniciar Sesión" FontSize="24" HorizontalOptions="Center" 
-               TextColor="#ffd800"/>
+        <Border BackgroundColor="Black" Margin="20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5"/>
+            </Border.StrokeShape>
+            <Label Text="Iniciar Sesión" 
+               FontSize="25"
+               HorizontalOptions="Center" 
+               TextColor="#ffd800"
+               FontAttributes="Bold"/>
+        </Border>
 
-        <Entry x:Name="UsernameEntry" 
-               Placeholder="Usuario" 
-               HorizontalOptions="FillAndExpand"
-               Margin="10,25,10,5"/>
+        <Border  BackgroundColor="White" Margin="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Entry x:Name="UsernameEntry" 
+                   Placeholder="Usuario" 
+                   TextColor="Black"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="10,5,10,5"/>
+        </Border>
 
-        <Entry x:Name="PasswordEntry" 
-               Placeholder="Contraseña" 
-               IsPassword="True" 
-               HorizontalOptions="FillAndExpand"
-               Margin="10,25,10,5"/>
+        <Border BackgroundColor="White" Margin="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Entry x:Name="PasswordEntry" 
+                   Placeholder="Contraseña" 
+                   TextColor="Black"
+                   IsPassword="True" 
+                   HorizontalOptions="FillAndExpand"
+                   Margin="10,5,10,5"/>
+        </Border>
 
         <Button Text="Iniciar Sesión" 
                 BackgroundColor ="#ffd800"
-                Margin="10,25,10,5"
+                Margin="40,25,40,25"
                 Clicked="OnLoginClicked" 
                 HorizontalOptions="FillAndExpand" />
         
